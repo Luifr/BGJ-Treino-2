@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
 	Rigidbody2D body;
-
+	SpriteRenderer spriteRenderer;
+	Animator animator;
 	float horizontal;
 	float vertical;
 	float moveLimiter = 0.7f;
@@ -20,6 +21,8 @@ public class PlayerMovementController : MonoBehaviour
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
 	void Update()
@@ -37,6 +40,14 @@ public class PlayerMovementController : MonoBehaviour
 			dash = true;
 			dashtimer = dashCooldown;
 		}
+
+		animator.SetBool("isMoving", horizontal != 0 || vertical != 0);
+
+		if (horizontal == -1)
+			spriteRenderer.flipX = true;
+		else if (horizontal == 1)
+			spriteRenderer.flipX = false;
+
 	}
 
 	void FixedUpdate()
