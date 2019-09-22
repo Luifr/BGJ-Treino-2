@@ -10,7 +10,8 @@ public class PlayerMovementController : MonoBehaviour
 	float vertical;
 	float moveLimiter = 0.7f;
 
-	public float runSpeed = 10.0f;
+	[SerializeField]
+	float runSpeed = 10.0f;
 
 	void Start()
 	{
