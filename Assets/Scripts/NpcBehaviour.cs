@@ -2,17 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcBehaviour : MonoBehaviour
+public class NPCBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public Vector2 move;
+	Rigidbody2D body;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	[SerializeField]
+	float runSpeed = 5.0f;
+	public bool makeOrder;
+	public int stopIndex;
+	void Start()
+	{
+		body = GetComponent<Rigidbody2D>();
+		if (!makeOrder)
+		{
+			Destroy(gameObject, 4f);
+		}
+		else
+		{
+			StartCoroutine(MakeOrder());
+		}
+
+	}
+
+	void FixedUpdate()
+	{
+		body.velocity = move * runSpeed;
+	}
+
+	IEnumerator MakeOrder()
+	{
+		yield return new WaitForSeconds(move.y > 0 ? (1.2f + stopIndex * 0.5f) : (1.8f - stopIndex * 0.5f));
+		move = new Vector2(-1, 0);
+	}
 }

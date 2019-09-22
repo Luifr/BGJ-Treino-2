@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
 	[SerializeField]
 	Direction direction;
 
-	public delegate void Initialise(GameObject gameObject);
+	public delegate void Initialise(GameObject gameObject, Direction direction);
 	public Initialise InstatiateCallBack = null;
 
 	public void Spawn(Vector3 position)
@@ -22,16 +22,16 @@ public class Spawner : MonoBehaviour
 		GameObject gameObject = Instantiate(prefab, transform.position, Quaternion.identity);
 		if (InstatiateCallBack != null)
 		{
-			InstatiateCallBack(gameObject);
+			InstatiateCallBack(gameObject, direction);
 		}
 	}
 
 
-	public enum Direction
-	{
-		up,
-		left,
-		down,
-		right
-	}
+}
+public enum Direction
+{
+	up,
+	left,
+	down,
+	right
 }
