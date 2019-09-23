@@ -13,9 +13,10 @@ public class PlayerMovementController : MonoBehaviour
 
 	[SerializeField]
 	float runSpeed = 10.0f;
+    public float dashSpeed = 4.0f;
 
 	bool dash = false;
-	float dashCooldown = 0.8f;
+	public float dashCooldown = 0.8f;
 	float dashtimer = 0;
 
 	void Start()
@@ -27,7 +28,6 @@ public class PlayerMovementController : MonoBehaviour
 
 	void Update()
 	{
-		runSpeed = 10.0f;
 		dashtimer -= Time.deltaTime;
 
 		// Gives a value between -1 and 1
@@ -58,7 +58,7 @@ public class PlayerMovementController : MonoBehaviour
 		if (dash)
 		{
 			dash = false;
-			velocity *= 7;
+			velocity *= dashSpeed;
 		}
 		body.velocity = velocity;
 	}

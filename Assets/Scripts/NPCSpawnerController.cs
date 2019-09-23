@@ -37,7 +37,7 @@ public class NPCSpawnerController : MonoBehaviour
 
 	void InitialiseNpc(GameObject gameObject, Direction direction)
 	{
-		NPCBehaviour npc = gameObject.GetComponent<NPCBehaviour>();
+		NPCController npc = gameObject.GetComponent<NPCController>();
 		if (npcsWaiting < npcsAtSpot.Length * maxNpcsPerSpot)
 		{
 			npc.makeOrder = Random.value > 0.0;

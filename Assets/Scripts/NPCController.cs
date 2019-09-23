@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCBehaviour : MonoBehaviour
+public class NPCController : MonoBehaviour
 {
 	public Vector2 move;
 	Rigidbody2D body;
